@@ -1,0 +1,89 @@
+package com.burhan.mercari.ui.productlist
+
+import android.os.Bundle
+import android.view.LayoutInflater
+import android.view.View
+import android.view.ViewGroup
+import android.widget.Toast
+import androidx.databinding.DataBindingUtil
+import androidx.fragment.app.Fragment
+import androidx.lifecycle.ViewModelProviders
+import androidx.recyclerview.widget.LinearLayoutManager
+import androidx.recyclerview.widget.RecyclerView
+import com.burhan.mercari.R
+import com.burhan.mercari.databinding.FragmentProductsBinding
+import com.burhan.mercari.util.Factory
+
+/**
+ * A placeholder fragment containing a simple view.
+ */
+class ProductListFragment : Fragment() {
+
+//    private lateinit var viewModel: ProductListViewModel
+    private var productListAdapter: ProductListAdapter? = null
+
+    private val viewModel by lazy {
+        val activity = requireNotNull(this.activity){
+            "You can only acccessViewModel after onActivityCreated()"
+        }
+        ViewModelProviders.of(this, Factory(activity?.application)).get(ProductListViewModel::class.java).apply {
+            setIndex(arguments?.getInt(ARG_SECTION_NUMBER) ?: 1)
+        }
+    }
+
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+//        viewModel = ViewModelProviders.of(this, Factory(activity?.application)).get(ProductListViewModel::class.java).apply {
+//            setIndex(arguments?.getInt(ARG_SECTION_NUMBER) ?: 1)
+//        }
+    }
+
+    override fun onCreateView(
+        inflater: LayoutInflater, container: ViewGroup?,
+        savedInstanceState: Bundle?
+    ): View? {
+        val binding: FragmentProductsBinding = DataBindingUtil.inflate(
+            inflater,
+            R.layout.fragment_products,
+            container,
+            false
+        )
+        binding.lifecycleOwner = viewLifecycleOwner
+        binding.viewModel = viewModel
+
+        productListAdapter = ProductListAdapter(ProductSelectCallback {
+            // TODO: Got to ProductDetailActivity
+            Toast.makeText(activity, "Product clicked: ${it.name} ", Toast.LENGTH_SHORT).show()
+        })
+
+        binding.root.findViewById<RecyclerView>(R.id.recycler_view).apply {
+            layoutManager = LinearLayoutManager(context)
+            adapter = productListAdapter
+        }
+        return binding.root
+
+
+//        return inflater.inflate(R.layout.fragment_products, container, false)
+    }
+
+    companion object {
+        /**
+         * The fragment argument representing the section number for this
+         * fragment.
+         */
+        private const val ARG_SECTION_NUMBER = "section_number"
+
+        /**
+         * Returns a new instance of this fragment for the given section
+         * number.
+         */
+        @JvmStatic
+        fun newInstance(sectionNumber: Int): ProductListFragment {
+            return ProductListFragment().apply {
+                arguments = Bundle().apply {
+                    putInt(ARG_SECTION_NUMBER, sectionNumber)
+                }
+            }
+        }
+    }
+}
