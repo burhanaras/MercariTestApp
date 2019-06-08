@@ -1,5 +1,6 @@
 package com.burhan.mercari.ui.productlist
 
+import android.content.res.Configuration
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
@@ -22,6 +23,7 @@ import com.burhan.mercari.util.Factory
 class ProductListFragment : Fragment() {
 
     private var productListAdapter: ProductListAdapter? = null
+    private var gridLayoutManager: GridLayoutManager = GridLayoutManager(context, 2)
 
     private val viewModel by lazy {
         val activity = requireNotNull(this.activity) {
@@ -51,11 +53,18 @@ class ProductListFragment : Fragment() {
             Toast.makeText(activity, "Product clicked: ${it.name} ", Toast.LENGTH_SHORT).show()
         })
 
+        gridLayoutManager = if (activity?.resources?.configuration?.orientation == Configuration.ORIENTATION_PORTRAIT) {
+            GridLayoutManager(context, 2)
+        } else {
+            GridLayoutManager(context, 4)
+        }
+
         binding.root.findViewById<RecyclerView>(R.id.recycler_view).apply {
-            layoutManager = GridLayoutManager(context, 2) as RecyclerView.LayoutManager?
+            layoutManager = gridLayoutManager
             adapter = productListAdapter
             addItemDecoration(RecyclerViewItemDecoration(16))
         }
+
         return binding.root
 
     }
