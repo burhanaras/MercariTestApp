@@ -10,4 +10,7 @@ data class Product(var id: String,
                    var likeCount: String,
                    var commentCount: String,
                    var price: String,
-                   var photoUrl: String)
+                   var photoUrl: String){
+
+    fun isSoldOut(): Boolean = status == "sold_out"
+}

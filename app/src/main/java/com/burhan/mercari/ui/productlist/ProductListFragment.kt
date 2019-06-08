@@ -10,7 +10,6 @@ import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProviders
 import androidx.recyclerview.widget.GridLayoutManager
-import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.burhan.mercari.R
 import com.burhan.mercari.databinding.FragmentProductsBinding
@@ -25,9 +24,10 @@ class ProductListFragment : Fragment() {
     private var productListAdapter: ProductListAdapter? = null
 
     private val viewModel by lazy {
-        val activity = requireNotNull(this.activity){
-            "You can only acccessViewModel after onActivityCreated()"
+        val activity = requireNotNull(this.activity) {
+            "You can only access ViewModel after onActivityCreated()"
         }
+
         ViewModelProviders.of(this, Factory(activity.application)).get(ProductListViewModel::class.java).apply {
             setIndex(arguments?.getInt(ARG_SECTION_NUMBER) ?: 1)
         }
@@ -52,24 +52,23 @@ class ProductListFragment : Fragment() {
         })
 
         binding.root.findViewById<RecyclerView>(R.id.recycler_view).apply {
-            layoutManager = GridLayoutManager(context,2) as RecyclerView.LayoutManager?
+            layoutManager = GridLayoutManager(context, 2) as RecyclerView.LayoutManager?
             adapter = productListAdapter
             addItemDecoration(RecyclerViewItemDecoration(16))
         }
         return binding.root
 
-
-//        return inflater.inflate(R.layout.fragment_products, container, false)
     }
 
     override fun onActivityCreated(savedInstanceState: Bundle?) {
         super.onActivityCreated(savedInstanceState)
-        viewModel.products.observe(viewLifecycleOwner, Observer<List<Product>>{ products ->
+        viewModel.products.observe(viewLifecycleOwner, Observer<List<Product>> { products ->
             products?.apply {
                 productListAdapter?.products = products
             }
         })
     }
+
     companion object {
         /**
          * The fragment argument representing the section number for this
