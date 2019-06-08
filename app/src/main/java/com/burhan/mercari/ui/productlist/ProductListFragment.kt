@@ -71,7 +71,7 @@ class ProductListFragment : Fragment() {
 
     override fun onActivityCreated(savedInstanceState: Bundle?) {
         super.onActivityCreated(savedInstanceState)
-        viewModel.products.observe(viewLifecycleOwner, Observer<List<Product>> { products ->
+        viewModel.productsToShow.observe(viewLifecycleOwner, Observer<List<Product>> { products ->
             products?.apply {
                 productListAdapter?.products = products
             }
