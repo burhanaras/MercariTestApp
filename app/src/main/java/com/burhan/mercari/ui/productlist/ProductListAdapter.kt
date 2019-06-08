@@ -13,7 +13,7 @@ import com.burhan.mercari.R
 import com.burhan.mercari.databinding.ProductBinding
 import com.burhan.mercari.domain.Product
 
-class ProductListAdapter(val callback: ProductSelectCallback) : RecyclerView.Adapter<ProductViewHolder>() {
+class ProductListAdapter(private val callback: ProductSelectCallback) : RecyclerView.Adapter<ProductViewHolder>() {
 
     var products: List<Product> = emptyList()
         set(value) {
@@ -40,8 +40,6 @@ class ProductListAdapter(val callback: ProductSelectCallback) : RecyclerView.Ada
             it.productCallback = callback
         }
     }
-
-
 }
 
 

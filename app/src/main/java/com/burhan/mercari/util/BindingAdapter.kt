@@ -24,3 +24,9 @@ fun goneIfNotNull(view: View, it: Any?) {
 fun setImageUrl(imageView: ImageView, url: String) {
     Glide.with(imageView.context).load(url).into(imageView)
 }
+
+@BindingAdapter("imageUrl")
+fun setImageUrl(imageView: ImageView, url: Int) {
+    Glide.with(imageView.context).load(url).into(imageView)
+}
+
