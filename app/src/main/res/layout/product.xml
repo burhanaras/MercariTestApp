@@ -78,7 +78,7 @@
                     app:layout_constraintTop_toBottomOf="@+id/iv_product_image"/>
 
             <TextView
-                    android:id="@+id/tv_product_comment"
+                    android:id="@+id/tv_product_comment_count"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginStart="4dp"

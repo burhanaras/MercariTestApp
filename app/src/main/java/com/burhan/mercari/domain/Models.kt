@@ -7,7 +7,7 @@ package com.burhan.mercari.domain
 data class Product(var id: String,
                    var name: String,
                    var status: String,
-                   var likeCount: Int,
-                   var commentCount: Int,
-                   var price: Double,
+                   var likeCount: String,
+                   var commentCount: String,
+                   var price: String,
                    var photoUrl: String)
