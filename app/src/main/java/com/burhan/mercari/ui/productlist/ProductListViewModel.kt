@@ -24,7 +24,9 @@ class ProductListViewModel(val app: Application) : ViewModel() {
     private fun dummyData(): List<Product> {
         var product0 = Product("0","Product0","on_sale","10","10","$ 50.0","https://images.yourstory.com/cs/wordpress/2016/08/125-fall-in-love.png")
         var product1 = Product("0","Product1","sold_out","10","10","$ 50.0","https://dummyimage.com/400x400/000/fff?text=women2")
-        return listOf(product0, product1)
+        var product2 = Product("0","Product1","sold_out","10","10","$ 50.0","https://dummyimage.com/400x400/000/fff?text=women2")
+        var product3 = Product("0","Product1","sold_out","10","10","$ 50.0","https://dummyimage.com/400x400/000/fff?text=women2")
+        return listOf(product0, product1, product2, product3)
     }
 
     fun setIndex(index: Int) {
