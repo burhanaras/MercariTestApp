@@ -6,11 +6,11 @@
 
         <variable
                 name="product"
-                type="com.burhan.mercari.domain.Product" />
+                type="com.burhan.mercari.domain.Product"/>
 
         <variable
                 name="productCallback"
-                type="com.burhan.mercari.ui.productlist.ProductSelectCallback" />
+                type="com.burhan.mercari.ui.productlist.ProductSelectCallback"/>
     </data>
 
     <com.google.android.material.card.MaterialCardView
@@ -30,7 +30,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:orientation="vertical"
-                    app:layout_constraintGuide_begin="8dp" />
+                    app:layout_constraintGuide_begin="8dp"/>
 
             <androidx.constraintlayout.widget.Guideline
                     android:id="@+id/right_well"
@@ -38,64 +38,111 @@
                     android:layout_height="wrap_content"
                     android:layout_marginEnd="8dp"
                     android:orientation="vertical"
-                    app:layout_constraintGuide_end="8dp" />
+                    app:layout_constraintGuide_end="8dp"/>
+
 
             <ImageView
-                    android:id="@+id/play_icon"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
+                    android:id="@+id/iv_product_like"
+                    android:layout_width="24dp"
+                    android:layout_height="24dp"
                     android:layout_marginTop="14dp"
+                    android:contentDescription="@string/like_count"
                     app:layout_constraintStart_toStartOf="@+id/left_well"
-                    app:layout_constraintTop_toBottomOf="@+id/video_thumbnail"
-                    app:srcCompat="@android:drawable/ic_media_play" />
+                    app:layout_constraintTop_toBottomOf="@+id/iv_product_image"
+                    app:srcCompat="@drawable/icon_like"/>
 
             <TextView
-                    android:id="@+id/title"
-                    android:layout_width="0dp"
+                    android:id="@+id/tv_product_like"
+                    android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginStart="4dp"
                     android:layout_marginTop="16dp"
-                    android:text="@{product.name}"
+                    android:text="@{product.likeCount}"
+                    android:textAlignment="viewStart"
+                    android:textAllCaps="false"
+                    android:textColor="@android:color/black"
+                    android:textStyle="bold"
+                    app:layout_constraintStart_toEndOf="@+id/iv_product_like"
+                    app:layout_constraintTop_toBottomOf="@+id/iv_product_image"
+                    tools:text="10"/>
+
+            <ImageView
+                    android:id="@+id/iv_product_comment"
+                    android:layout_width="24dp"
+                    android:layout_height="24dp"
+                    android:layout_marginStart="8dp"
+                    android:layout_marginTop="16dp"
+                    app:srcCompat="@drawable/icon_comment"
+                    android:contentDescription="@string/comment_count"
+                    app:layout_constraintStart_toEndOf="@+id/tv_product_like"
+                    app:layout_constraintTop_toBottomOf="@+id/iv_product_image"/>
+
+            <TextView
+                    android:id="@+id/tv_product_comment"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="4dp"
+                    android:layout_marginTop="16dp"
+                    android:text="@{product.commentCount}"
+                    android:textAlignment="viewStart"
+                    android:textAllCaps="false"
+                    android:textColor="@android:color/black"
+                    android:textStyle="bold"
+                    app:layout_constraintStart_toEndOf="@+id/iv_product_comment"
+                    app:layout_constraintTop_toBottomOf="@+id/iv_product_image"
+                    tools:text="10"/>
+
+            <TextView
+                    android:id="@+id/tv_product_price"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="4dp"
+                    android:layout_marginTop="16dp"
+                    android:text="@{product.price}"
                     android:textAlignment="viewStart"
                     android:textAllCaps="false"
                     android:textColor="@android:color/black"
                     android:textStyle="bold"
                     app:layout_constraintEnd_toStartOf="@+id/right_well"
-                    app:layout_constraintStart_toEndOf="@+id/play_icon"
-                    app:layout_constraintTop_toBottomOf="@+id/video_thumbnail"
-                    tools:text="Video title" />
-
-
-            <TextView
-                    android:id="@+id/description"
-                    android:layout_width="0dp"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="8dp"
-                    android:layout_marginBottom="16dp"
-                    android:text="@{product.photoUrl}"
-                    android:textAlignment="viewStart"
-                    android:textAllCaps="false"
-                    android:textColor="@android:color/darker_gray"
-                    android:textSize="14sp"
-                    app:layout_constraintEnd_toEndOf="@+id/right_well"
-                    app:layout_constraintStart_toStartOf="@+id/left_well"
-                    app:layout_constraintTop_toBottomOf="@+id/title"
-                    app:layout_constraintBottom_toBottomOf="parent"
-                    tools:text="this is a vedeo @android:string/fingerprint_icon_content_description" />
+                    app:layout_constraintTop_toBottomOf="@+id/iv_product_image"
+                    tools:text="$ 100"/>
 
             <ImageView
-                    android:id="@+id/video_thumbnail"
+                    android:id="@+id/iv_product_image"
                     android:layout_width="0dp"
                     android:layout_height="0dp"
                     android:adjustViewBounds="false"
                     android:cropToPadding="false"
                     android:scaleType="centerCrop"
+                    android:contentDescription="@string/product_image"
                     app:imageUrl="@{product.photoUrl}"
                     app:layout_constraintDimensionRatio="h,4:3"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toTopOf="parent"
-                    tools:srcCompat="@tools:sample/backgrounds/scenic" />
+                    tools:srcCompat="@tools:sample/backgrounds/scenic"/>
+
+            <ImageView
+                    android:id="@+id/iv_product_sold_out"
+                    android:layout_width="104dp"
+                    android:layout_height="66dp"
+                    android:src="@drawable/badge_soldout"
+                    android:contentDescription="@string/sold_out"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent"/>
+
+            <TextView
+                    android:id="@+id/tv_product_name"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    app:layout_constraintStart_toStartOf="@+id/left_well"
+                    app:layout_constraintBottom_toBottomOf="@+id/iv_product_image"
+                    android:textAlignment="viewStart"
+                    android:textAllCaps="false"
+                    android:textColor="@android:color/white"
+                    android:textStyle="bold"
+                    android:layout_marginBottom="16dp"
+                    android:text="@{product.name}"/>
 
             <View
                     android:id="@+id/clickableOverlay"
@@ -106,7 +153,7 @@
                     app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toTopOf="parent" />
+                    app:layout_constraintTop_toTopOf="parent"/>
         </androidx.constraintlayout.widget.ConstraintLayout>
     </com.google.android.material.card.MaterialCardView>
 </layout>
