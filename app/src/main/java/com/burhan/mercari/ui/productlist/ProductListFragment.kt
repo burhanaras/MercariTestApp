@@ -9,6 +9,7 @@ import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProviders
+import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.burhan.mercari.R
@@ -51,8 +52,9 @@ class ProductListFragment : Fragment() {
         })
 
         binding.root.findViewById<RecyclerView>(R.id.recycler_view).apply {
-            layoutManager = LinearLayoutManager(context)
+            layoutManager = GridLayoutManager(context,2) as RecyclerView.LayoutManager?
             adapter = productListAdapter
+            addItemDecoration(RecyclerViewItemDecoration(16))
         }
         return binding.root
 
