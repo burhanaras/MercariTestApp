@@ -1,5 +1,6 @@
 package com.burhan.mercari.network
 
+import com.burhan.mercari.network.service.ApiService
 import com.facebook.stetho.okhttp3.StethoInterceptor
 import com.jakewharton.retrofit2.adapter.kotlin.coroutines.CoroutineCallAdapterFactory
 import com.squareup.moshi.Moshi

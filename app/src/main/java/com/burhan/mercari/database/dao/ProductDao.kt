@@ -1,10 +1,11 @@
-package com.burhan.mercari.database
+package com.burhan.mercari.database.dao
 
 import androidx.lifecycle.LiveData
 import androidx.room.Dao
 import androidx.room.Insert
 import androidx.room.OnConflictStrategy
 import androidx.room.Query
+import com.burhan.mercari.database.entity.DatabaseProduct
 
 /**
  * Developed by tcbaras on 2019-06-09.

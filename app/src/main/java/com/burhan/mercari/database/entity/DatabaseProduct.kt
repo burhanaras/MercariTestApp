@@ -1,4 +1,4 @@
-package com.burhan.mercari.database
+package com.burhan.mercari.database.entity
 
 import androidx.room.Entity
 import androidx.room.PrimaryKey

@@ -4,6 +4,8 @@ import android.content.Context
 import androidx.room.Database
 import androidx.room.Room
 import androidx.room.RoomDatabase
+import com.burhan.mercari.database.dao.ProductDao
+import com.burhan.mercari.database.entity.DatabaseProduct
 
 /**
  * Developed by tcbaras on 2019-06-09.

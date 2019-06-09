@@ -1,6 +1,6 @@
-package com.burhan.mercari.network
+package com.burhan.mercari.network.dto
 
-import com.burhan.mercari.database.DatabaseProduct
+import com.burhan.mercari.database.entity.DatabaseProduct
 import com.squareup.moshi.JsonClass
 
 /**

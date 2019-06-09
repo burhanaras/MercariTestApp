@@ -15,7 +15,8 @@ import androidx.recyclerview.widget.RecyclerView
 import com.burhan.mercari.R
 import com.burhan.mercari.databinding.FragmentProductsBinding
 import com.burhan.mercari.domain.Product
-import com.burhan.mercari.util.Factory
+import com.burhan.mercari.ui.core.RecyclerViewItemDecoration
+import com.burhan.mercari.ui.core.Factory
 
 /**
  * A placeholder fragment containing a simple view.

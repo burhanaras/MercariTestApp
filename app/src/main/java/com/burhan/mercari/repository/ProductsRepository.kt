@@ -3,10 +3,10 @@ package com.burhan.mercari.repository
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.Transformations
 import com.burhan.mercari.database.ProductsDatabase
-import com.burhan.mercari.database.asDomainModel
+import com.burhan.mercari.database.entity.asDomainModel
 import com.burhan.mercari.domain.Product
 import com.burhan.mercari.network.Network
-import com.burhan.mercari.network.asDatabaseModel
+import com.burhan.mercari.network.dto.asDatabaseModel
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.withContext
 

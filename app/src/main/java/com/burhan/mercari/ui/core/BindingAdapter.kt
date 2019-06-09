@@ -1,4 +1,4 @@
-package com.burhan.mercari.util
+package com.burhan.mercari.ui.core
 
 /**
  * Developed by tcbaras on 2019-06-08.
@@ -29,9 +29,3 @@ fun visibleIfSoldOut(view: View, it: Boolean?) {
 fun setImageUrl(imageView: ImageView, url: String) {
     Glide.with(imageView.context).load(url).into(imageView)
 }
-
-@BindingAdapter("imageUrl")
-fun setImageUrl(imageView: ImageView, url: Int) {
-    Glide.with(imageView.context).load(url).into(imageView)
-}
-

@@ -1,4 +1,4 @@
-package com.burhan.mercari.ui.productlist
+package com.burhan.mercari.ui.core
 
 import android.graphics.Rect
 import android.view.View

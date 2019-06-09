@@ -1,5 +1,6 @@
-package com.burhan.mercari.network
+package com.burhan.mercari.network.service
 
+import com.burhan.mercari.network.dto.NetworkProduct
 import kotlinx.coroutines.Deferred
 import retrofit2.http.GET
 
