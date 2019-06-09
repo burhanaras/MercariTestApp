@@ -26,31 +26,3 @@ interface ApiService {
     @GET("women.json")
     fun getWomenProductsAsync(): Deferred<List<NetworkProduct>>
 }
-
-object Network {
-
-    private const val TIMEOUT_IN_SECONDS: Long = 20
-    private val moshi: Moshi = Moshi.Builder().add(KotlinJsonAdapterFactory()).build()
-
-    private val client: OkHttpClient by lazy {
-        OkHttpClient().newBuilder()
-            .readTimeout(TIMEOUT_IN_SECONDS, TimeUnit.SECONDS)
-            .connectTimeout(TIMEOUT_IN_SECONDS, TimeUnit.SECONDS)
-            .addNetworkInterceptor(StethoInterceptor())
-            .addInterceptor(HttpLoggingInterceptor().apply {
-                level = HttpLoggingInterceptor.Level.BODY
-            })
-            .build()
-    }
-
-    private val retrofit: Retrofit = Retrofit.Builder()
-        .baseUrl("https://s3-ap-northeast-1.amazonaws.com/m-et/Android/json/")
-        .addConverterFactory(MoshiConverterFactory.create(moshi))
-        .addCallAdapterFactory(CoroutineCallAdapterFactory())
-        .client(client)
-        .build()
-
-    val apiService: ApiService = retrofit.create(ApiService::class.java)
-
-
-}
