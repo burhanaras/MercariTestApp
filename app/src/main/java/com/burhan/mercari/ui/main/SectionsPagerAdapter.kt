@@ -22,7 +22,7 @@ class SectionsPagerAdapter(private val context: Context, fm: FragmentManager) : 
     override fun getItem(position: Int): Fragment {
         // getItem is called to instantiate the fragment for the given page.
         // Return a ProductListFragment (defined as a static inner class below).
-        return ProductListFragment.newInstance(position + 1)
+        return ProductListFragment.newInstance(position)
     }
 
     override fun getPageTitle(position: Int): CharSequence? {
@@ -30,7 +30,7 @@ class SectionsPagerAdapter(private val context: Context, fm: FragmentManager) : 
     }
 
     override fun getCount(): Int {
-        // Show 2 total pages.
+        // Show total pages.
         return TAB_TITLES.count()
     }
 }

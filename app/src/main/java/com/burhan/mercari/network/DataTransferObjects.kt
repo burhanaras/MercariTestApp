@@ -8,9 +8,6 @@ import com.squareup.moshi.JsonClass
  */
 
 @JsonClass(generateAdapter = true)
-data class NetworkProductContainer(val products: List<NetworkProduct>)
-
-@JsonClass(generateAdapter = true)
 data class NetworkProduct(
     val id: String,
     val name: String,
@@ -20,21 +17,6 @@ data class NetworkProduct(
     val price: String,
     val photo: String
 )
-
-
-fun NetworkProductContainer.asDatabaseModel(): Array<DatabaseProduct> {
-    return products.map {
-        DatabaseProduct(
-            id = it.id,
-            name = it.name,
-            status = it.status,
-            num_likes = it.num_likes,
-            num_comments = it.num_comments,
-            price = it.price,
-            photo = it.photo
-        )
-    }.toTypedArray()
-}
 
 fun List<NetworkProduct>.asDatabaseModel(): Array<DatabaseProduct> {
     return map {

@@ -13,6 +13,12 @@ interface ProductDao {
     @Query("select * from databaseproduct")
     fun getAllProducts(): LiveData<List<DatabaseProduct>>
 
+    @Query("select * from databaseproduct where id LIKE 'mmen%' ")
+    fun getAllProductsOfMen(): LiveData<List<DatabaseProduct>>
+
+    @Query("select * from databaseproduct where id LIKE 'mwomen%' ")
+    fun getAllProductsOfWomen(): LiveData<List<DatabaseProduct>>
+
     @Insert(onConflict = OnConflictStrategy.REPLACE)
     fun insertAll(vararg products: DatabaseProduct)
 }

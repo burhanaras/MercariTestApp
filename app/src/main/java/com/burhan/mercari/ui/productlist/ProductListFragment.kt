@@ -22,24 +22,35 @@ import com.burhan.mercari.util.Factory
  */
 class ProductListFragment : Fragment() {
 
-    private var productListAdapter: ProductListAdapter? = null
-    private var gridLayoutManager: GridLayoutManager = GridLayoutManager(context, 2)
-
-    private val viewModel by lazy {
+    private val viewModel: ProductListViewModel by lazy {
         val activity = requireNotNull(this.activity) {
             "You can only access ViewModel after onActivityCreated()"
         }
 
-        ViewModelProviders.of(this, Factory(activity.application)).get(ProductListViewModel::class.java).apply {
-            setIndex(arguments?.getInt(ARG_SECTION_NUMBER) ?: 1)
-        }
+        val type = arguments?.getInt(ARG_SECTION_NUMBER) ?: 1
+        ViewModelProviders.of(this, Factory(activity.application, type)).get(ProductListViewModel::class.java)
     }
+
+    private var productListAdapter: ProductListAdapter? = null
+    private lateinit var binding: FragmentProductsBinding
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        val binding: FragmentProductsBinding = DataBindingUtil.inflate(
+
+        initDataBinding(inflater, container)
+
+        addClickListeners()
+
+        initUI()
+
+        return binding.root
+
+    }
+
+    private fun initDataBinding(inflater: LayoutInflater, container: ViewGroup?) {
+        binding = DataBindingUtil.inflate(
             inflater,
             R.layout.fragment_products,
             container,
@@ -47,26 +58,28 @@ class ProductListFragment : Fragment() {
         )
         binding.lifecycleOwner = viewLifecycleOwner
         binding.viewModel = viewModel
+    }
 
+    private fun addClickListeners() {
         productListAdapter = ProductListAdapter(ProductSelectCallback {
-            // TODO: Got to ProductDetailActivity
+            // TODO: Go to ProductDetailActivity
             Toast.makeText(activity, "Product clicked: ${it.name} ", Toast.LENGTH_SHORT).show()
         })
+    }
 
-        gridLayoutManager = if (activity?.resources?.configuration?.orientation == Configuration.ORIENTATION_PORTRAIT) {
-            GridLayoutManager(context, 2)
-        } else {
-            GridLayoutManager(context, 4)
-        }
+    private fun initUI() {
+        val gridLayoutManager =
+            if (activity?.resources?.configuration?.orientation == Configuration.ORIENTATION_PORTRAIT) {
+                GridLayoutManager(context, 2)
+            } else {
+                GridLayoutManager(context, 4)
+            }
 
         binding.root.findViewById<RecyclerView>(R.id.recycler_view).apply {
             layoutManager = gridLayoutManager
             adapter = productListAdapter
             addItemDecoration(RecyclerViewItemDecoration(16))
         }
-
-        return binding.root
-
     }
 
     override fun onActivityCreated(savedInstanceState: Bundle?) {
@@ -79,16 +92,8 @@ class ProductListFragment : Fragment() {
     }
 
     companion object {
-        /**
-         * The fragment argument representing the section number for this
-         * fragment.
-         */
         private const val ARG_SECTION_NUMBER = "section_number"
 
-        /**
-         * Returns a new instance of this fragment for the given section
-         * number.
-         */
         @JvmStatic
         fun newInstance(sectionNumber: Int): ProductListFragment {
             return ProductListFragment().apply {

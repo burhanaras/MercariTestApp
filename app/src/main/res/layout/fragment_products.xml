@@ -19,7 +19,7 @@
                 android:id="@+id/loading_spinner"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                app:goneIfNotNull="@{viewModel.products}"
+                app:goneIfNotNull="@{viewModel.productsToShow}"
                 android:layout_gravity="center"/>
 
         <androidx.recyclerview.widget.RecyclerView
