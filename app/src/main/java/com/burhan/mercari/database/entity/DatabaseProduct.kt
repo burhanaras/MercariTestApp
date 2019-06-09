@@ -28,7 +28,7 @@ fun List<DatabaseProduct>.asDomainModel(): List<Product>{
             status = it.status,
             likeCount = it.num_likes,
             commentCount = it.num_comments,
-            price = it.price,
+            price = "$ ${it.price}",
             photoUrl = it.photo
         )
     }
