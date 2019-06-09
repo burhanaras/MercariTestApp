@@ -1,0 +1,31 @@
+package com.burhan.mercari.database
+
+import android.content.Context
+import androidx.room.Database
+import androidx.room.Room
+import androidx.room.RoomDatabase
+
+/**
+ * Developed by tcbaras on 2019-06-09.
+ */
+
+@Database(entities = [DatabaseProduct::class], version = 1)
+abstract class ProductsDatabase : RoomDatabase() {
+    abstract val productDao: ProductDao
+}
+
+
+private lateinit var INSTANCE: ProductsDatabase
+
+fun getDatabase(context: Context): ProductsDatabase {
+    synchronized(ProductsDatabase::class.java) {
+        if (!::INSTANCE.isInitialized) {
+            INSTANCE = Room.databaseBuilder(
+                context.applicationContext,
+                ProductsDatabase::class.java,
+                "productsDb"
+            ).build()
+        }
+    }
+    return INSTANCE
+}
