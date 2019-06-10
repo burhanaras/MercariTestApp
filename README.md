@@ -41,20 +41,21 @@ Architecture of Mercari MVVM App:
 
 We have used popular, industry-proven tools and libraries :
 
-* **Architecture Components - ViewModel**
-* **Architecture Components - LiveData**
-* **Room**
-* **Android Material**
-* **Android KTX**
-* **Coroutines**
-* **WorkManager**
-* **Retrofit**
-* **Stetho**
-* **Moshi**
-* **LeakCanary**
-* **MonkeyRunner**
-* **Lint**
-* **JUnit - Espresso**
+* **Architecture Components - ViewModel** We keep UI related logic here.
+* **Architecture Components - LiveData** We keep data that UI needs. Fragments observe this LiveData
+* **DataBinding** To bind XML UI with data
+* **Room** To save data to local db
+* **Android Material** To benefit new Android Material design library
+* **Android KTX**  provide concise, idiomatic Kotlin to Jetpack and Android platform APIs.
+* **Coroutines** To fetch data in background threads. (We no longer need RxJava)
+* **WorkManager** To fetch data in the background periodically.
+* **Retrofit** To connect a web service
+* **Stetho** To trace the network requests and see local db content
+* **Moshi** To parse Json
+* **LeakCanary** To detect memory leaks
+* **MonkeyRunner** To test UI crashes crazily :)
+* **Lint** To see warnings in our code
+* **JUnit - Espresso** To write automated tests.
 
 
 
