@@ -2,7 +2,7 @@
 
 Developed by [Burhan ARAS] with all the love on planet.
 
-This application has been as an assignment project for the Mercary company of Japan. It's functionalities are as follows:
+This application has been developed as an assignment project for the Mercary company of Japan. It's functionalities are as follows:
 
   - Fetch data from Mercari web service
   - Group by Man, Women and All Products then list them on regarding pages
@@ -56,6 +56,8 @@ We have used popular, industry-proven tools and libraries :
 * **MonkeyRunner** To test UI crashes crazily :)
 * **Lint** To see warnings in our code
 * **JUnit - Espresso** To write automated tests.
+* **Android Profiler - APK Analyzer** To analyze our apk
+* **Proguard** To obfuscate our Apk code
 
 
 
