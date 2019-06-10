@@ -12,28 +12,17 @@
             android:layout_width="match_parent"
             android:theme="@style/AppTheme.AppBarOverlay">
 
-        <LinearLayout
-                android:layout_width="match_parent"
+        <TextView
+                android:id="@+id/title"
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:gravity="center_vertical"
-                android:orientation="horizontal">
-
-            <ImageView
-                    android:src="@drawable/icon_launcher"
-                    android:layout_width="30dp"
-                    android:layout_height="30dp"
-                    android:layout_margin="6dp"/>
-
-            <TextView
-                    android:id="@+id/title"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:gravity="center"
-                    android:minHeight="?actionBarSize"
-                    android:padding="@dimen/appbar_padding"
-                    android:text="@string/app_name"
-                    android:textAppearance="@style/TextAppearance.Widget.AppCompat.Toolbar.Title"/>
-        </LinearLayout>
+                android:gravity="center"
+                android:minHeight="?actionBarSize"
+                android:padding="@dimen/appbar_padding"
+                android:text="@string/app_name"
+                android:drawableStart="@drawable/icon_top_left"
+                android:drawablePadding="6dp"
+                android:textAppearance="@style/TextAppearance.Widget.AppCompat.Toolbar.Title"/>
 
 
         <com.google.android.material.tabs.TabLayout
