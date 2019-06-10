@@ -15,36 +15,48 @@ import kotlinx.coroutines.withContext
  */
 class ProductsRepository(private val database: ProductsDatabase) {
 
-    val allProducts: LiveData<List<Product>> = Transformations.map(database.productDao.getAllProducts()){
+    val allProducts: LiveData<List<Product>> = Transformations.map(database.productDao.getAllProducts()) {
         it.asDomainModel()
     }
 
-    val productsOfMen: LiveData<List<Product>> = Transformations.map(database.productDao.getAllProductsOfMen()){
+    val productsOfMen: LiveData<List<Product>> = Transformations.map(database.productDao.getAllProductsOfMen()) {
         it.asDomainModel()
     }
 
-    val productsOfWomen: LiveData<List<Product>> = Transformations.map(database.productDao.getAllProductsOfWomen()){
+    val productsOfWomen: LiveData<List<Product>> = Transformations.map(database.productDao.getAllProductsOfWomen()) {
         it.asDomainModel()
     }
 
-    suspend fun downloadAllProducts(){
-        withContext(Dispatchers.IO){
-            val downloadedProducts = Network.apiService.getAllProductsAsync().await()
-            database.productDao.insertAll(*downloadedProducts.asDatabaseModel())
+    suspend fun downloadAllProducts() {
+        withContext(Dispatchers.IO) {
+            try {
+                val downloadedProducts = Network.apiService.getAllProductsAsync().await()
+                database.productDao.insertAll(*downloadedProducts.asDatabaseModel())
+            } catch (e: Exception) {
+                e.printStackTrace()
+            }
         }
     }
 
-    suspend fun downloadProductsOfMen(){
-        withContext(Dispatchers.IO){
-            val downloadedProducts = Network.apiService.getMenProductsAsync().await()
-            database.productDao.insertAll(*downloadedProducts.asDatabaseModel())
+    suspend fun downloadProductsOfMen() {
+        withContext(Dispatchers.IO) {
+            try {
+                val downloadedProducts = Network.apiService.getMenProductsAsync().await()
+                database.productDao.insertAll(*downloadedProducts.asDatabaseModel())
+            } catch (e: Exception) {
+                e.printStackTrace()
+            }
         }
     }
 
-    suspend fun downloadProductsOfWomen(){
-        withContext(Dispatchers.IO){
-            val downloadedProducts = Network.apiService.getWomenProductsAsync().await()
-            database.productDao.insertAll(*downloadedProducts.asDatabaseModel())
+    suspend fun downloadProductsOfWomen() {
+        withContext(Dispatchers.IO) {
+            try {
+                val downloadedProducts = Network.apiService.getWomenProductsAsync().await()
+                database.productDao.insertAll(*downloadedProducts.asDatabaseModel())
+            } catch (e: Exception) {
+                e.printStackTrace()
+            }
         }
     }
 }
