@@ -34,7 +34,7 @@ Also we have implemented a background worker using **WorkManager** to run period
 This design creates a consistent and pleasant user experience. Regardless of whether the user comes back to the app several minutes after they've last closed it or several days later, they instantly see a user's information that the app persists locally. If this data is stale, the app's repository module starts updating the data in the background.
 
 Architecture of Mercari MVVM App: 
-![alt text](https://developer.android.com/topic/libraries/architecture/images/final-architecture.png "Logo Title Text 1")
+![alt text](https://github.com/burhanaras/MercariTestApp/blob/master/screenshots/mvvm.png "Mercari MVVM App architecture")
 
 
 ### Tech
