@@ -89,9 +89,13 @@ really great, neat and clean. I love it!
 * Instant App support (https://developer.android.com/topic/google-play-instant/getting-started/instant-enabled-app-bundle)
 * App bundle  (https://developer.android.com/platform/technology/app-bundle)
 * Shortcut Support (https://developer.android.com/guide/topics/ui/shortcuts/creating-shortcuts)
+* Unit tests (https://developer.android.com/training/testing/unit-testing)
+* Espresso UI tests  (https://developer.android.com/training/testing/unit-testing/instrumented-unit-tests)
 
 **Burhan ARAS**
+
 'Premature optimization is the root of all evil'
+
 www.burhanaras.net
 
    [Burhan ARAS]: <http://www.burhanaras.net>
