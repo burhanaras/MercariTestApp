@@ -83,6 +83,13 @@ That ensures we show data even the app is offline. When device has no network co
 * We also have a Work manager to run once a day periodically to fetch data and keep local db up to date. WorkManager is 
 really great, neat and clean. I love it!
 
+### TO-DO List
+
+* SSL Pinning (https://developer.android.com/training/articles/security-config#CertificatePinning)
+* Instant App support (https://developer.android.com/topic/google-play-instant/getting-started/instant-enabled-app-bundle)
+* App bundle  (https://developer.android.com/platform/technology/app-bundle)
+* Shortcut Support (https://developer.android.com/guide/topics/ui/shortcuts/creating-shortcuts)
+
 **Burhan ARAS**
 
    [Burhan ARAS]: <http://www.burhanaras.net>
