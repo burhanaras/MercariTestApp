@@ -37,7 +37,7 @@ Architecture of Mercari MVVM App:
 ![alt text](https://github.com/burhanaras/MercariTestApp/blob/master/screenshots/mvvm.png "Mercari MVVM App architecture")
 
 
-### Tech
+### Used Technologies and Libraries
 
 We have used popular, industry-proven tools and libraries :
 
@@ -91,6 +91,8 @@ really great, neat and clean. I love it!
 * Shortcut Support (https://developer.android.com/guide/topics/ui/shortcuts/creating-shortcuts)
 
 **Burhan ARAS**
+'Premature optimization is the root of all evil'
+www.burhanaras.net
 
    [Burhan ARAS]: <http://www.burhanaras.net>
 
