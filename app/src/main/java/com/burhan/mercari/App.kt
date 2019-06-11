@@ -20,6 +20,7 @@ class App : Application() {
 
     override fun onCreate() {
         super.onCreate()
+
         if (BuildConfig.DEBUG) {
             LeakCanary.install(this)
             Stetho.initializeWithDefaults(this)

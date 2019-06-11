@@ -69,12 +69,7 @@ class ProductListFragment : Fragment() {
     }
 
     private fun initUI() {
-        val gridLayoutManager =
-            if (activity?.resources?.configuration?.orientation == Configuration.ORIENTATION_PORTRAIT) {
-                GridLayoutManager(context, 2)
-            } else {
-                GridLayoutManager(context, 4)
-            }
+        val gridLayoutManager = GridLayoutManager(context, resources.getInteger(R.integer.column_ccount))
 
         binding.root.findViewById<RecyclerView>(R.id.recycler_view).apply {
             layoutManager = gridLayoutManager
