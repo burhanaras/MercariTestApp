@@ -83,6 +83,17 @@ That ensures we show data even the app is offline. When device has no network co
 * We also have a Work manager to run once a day periodically to fetch data and keep local db up to date. WorkManager is 
 really great, neat and clean. I love it!
 
+
+### Package Structure
+
+* **UI** Contains UI related classes which are Activities, Fragments, ViewModels  and custom views.
+* **Database** Contains DAO, entity classes, Room DB implementation and everything else related to database
+* **Domain** Keeps domain objects, anything related to business logic and usecases
+* **Network** Contains Retrofit implementation, service api interface and data transfer objects
+* **Repository** Single source of truth for all the app data
+* **Work** Contains a WorkManager worker to run daily and keep local db up to date
+
+
 ### TO-DO List
 
 * SSL Pinning (https://developer.android.com/training/articles/security-config#CertificatePinning)
