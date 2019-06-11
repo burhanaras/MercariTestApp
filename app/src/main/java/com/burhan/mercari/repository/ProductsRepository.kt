@@ -15,6 +15,11 @@ import kotlinx.coroutines.withContext
  */
 class ProductsRepository(private val database: ProductsDatabase) {
 
+    // Since those url's are dynamic, we keep them in variables. They are retrieved from webservice.
+    private var allProductsServiceUrl: String? = null
+    private var menProductsServiceUrl: String? = null
+    private var womenProductsServiceUrl: String? = null
+
     val allProducts: LiveData<List<Product>> = Transformations.map(database.productDao.getAllProducts()) {
         it.asDomainModel()
     }
@@ -27,10 +32,28 @@ class ProductsRepository(private val database: ProductsDatabase) {
         it.asDomainModel()
     }
 
+    suspend fun downloadCategoryUrls() {
+        withContext(Dispatchers.IO) {
+            try {
+                val categoryUrls = Network.apiService.getUrlsForCategoriesAsync().await()
+
+                allProductsServiceUrl = categoryUrls.firstOrNull { it.name == CATEGORY_ALL }?.data
+                menProductsServiceUrl = categoryUrls.firstOrNull { it.name == CATEGORY_MEN }?.data
+                womenProductsServiceUrl = categoryUrls.firstOrNull { it.name == CATEGORY_WOMEN }?.data
+
+            } catch (e: Exception) {
+                e.printStackTrace()
+            }
+        }
+    }
+
     suspend fun downloadAllProducts() {
         withContext(Dispatchers.IO) {
             try {
-                val downloadedProducts = Network.apiService.getAllProductsAsync().await()
+                if (allProductsServiceUrl == null) {
+                    downloadCategoryUrls()
+                }
+                val downloadedProducts = Network.apiService.getAllProductsAsync(allProductsServiceUrl!!).await()
                 database.productDao.insertAll(*downloadedProducts.asDatabaseModel())
             } catch (e: Exception) {
                 e.printStackTrace()
@@ -41,7 +64,7 @@ class ProductsRepository(private val database: ProductsDatabase) {
     suspend fun downloadProductsOfMen() {
         withContext(Dispatchers.IO) {
             try {
-                val downloadedProducts = Network.apiService.getMenProductsAsync().await()
+                val downloadedProducts = Network.apiService.getMenProductsAsync("").await()
                 database.productDao.insertAll(*downloadedProducts.asDatabaseModel())
             } catch (e: Exception) {
                 e.printStackTrace()
@@ -52,11 +75,17 @@ class ProductsRepository(private val database: ProductsDatabase) {
     suspend fun downloadProductsOfWomen() {
         withContext(Dispatchers.IO) {
             try {
-                val downloadedProducts = Network.apiService.getWomenProductsAsync().await()
+                val downloadedProducts = Network.apiService.getWomenProductsAsync("").await()
                 database.productDao.insertAll(*downloadedProducts.asDatabaseModel())
             } catch (e: Exception) {
                 e.printStackTrace()
             }
         }
+    }
+
+    companion object {
+        const val CATEGORY_ALL = "All"
+        const val CATEGORY_MEN = "Men"
+        const val CATEGORY_WOMEN = "Women"
     }
 }

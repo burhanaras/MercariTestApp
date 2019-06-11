@@ -1,20 +1,27 @@
 package com.burhan.mercari.network.service
 
+import com.burhan.mercari.network.dto.CategoryUrlHolder
 import com.burhan.mercari.network.dto.NetworkProduct
 import kotlinx.coroutines.Deferred
 import retrofit2.http.GET
+import retrofit2.http.Path
+import retrofit2.http.Url
 
 /**
  * Developed by tcbaras on 2019-06-09.
  */
 interface ApiService {
 
-    @GET("all.json")
-    fun getAllProductsAsync(): Deferred<List<NetworkProduct>>
+    @GET("master.json")
+    fun getUrlsForCategoriesAsync(): Deferred<List<CategoryUrlHolder>>
 
-    @GET("men.json")
-    fun getMenProductsAsync(): Deferred<List<NetworkProduct>>
+    @GET
+    fun getAllProductsAsync(@Url url: String): Deferred<List<NetworkProduct>>
 
-    @GET("women.json")
-    fun getWomenProductsAsync(): Deferred<List<NetworkProduct>>
+    @GET
+    fun getMenProductsAsync(@Url url: String): Deferred<List<NetworkProduct>>
+
+    @GET
+    fun getWomenProductsAsync(@Url url: String): Deferred<List<NetworkProduct>>
+
 }
