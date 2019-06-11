@@ -106,6 +106,19 @@ really great, neat and clean. I love it!
 * Unit tests (https://developer.android.com/training/testing/unit-testing)
 * Espresso UI tests  (https://developer.android.com/training/testing/unit-testing/instrumented-unit-tests)
 
+
+# Screenshots
+
+![alt text](https://github.com/burhanaras/MercariTestApp/blob/master/screenshots/phone.png "Mercari MVVM App architecture")
+![alt text](https://github.com/burhanaras/MercariTestApp/blob/master/screenshots/phone-land.png "Mercari MVVM App architecture")
+![alt text](https://github.com/burhanaras/MercariTestApp/blob/master/screenshots/tablet_land.png "Mercari MVVM App architecture")
+![alt text](https://github.com/burhanaras/MercariTestApp/blob/master/screenshots/tablet_portrait.png "Mercari MVVM App architecture")
+
+
+
+
+
+
 **Burhan ARAS**
 
 'Premature optimization is the root of all evil'
