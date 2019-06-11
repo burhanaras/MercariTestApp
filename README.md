@@ -37,7 +37,7 @@ Architecture of Mercari MVVM App:
 ![alt text](https://github.com/burhanaras/MercariTestApp/blob/master/screenshots/mvvm.png "Mercari MVVM App architecture")
 
 
-### Used Technologies and Libraries
+# Used Technologies and Libraries
 
 We have used popular, industry-proven tools and libraries :
 
@@ -60,7 +60,8 @@ We have used popular, industry-proven tools and libraries :
 * **Proguard** To obfuscate our Apk code
 
 
-### Summary of App
+
+# Summary of App
 
 * MainActivity is the only Activity in our app. It contains a ViewPager and this viewPager shows 3 fragments. Since all 
 the Fragments just show same type of data, we have defined ProductListFragment for this purpose.
@@ -84,7 +85,8 @@ That ensures we show data even the app is offline. When device has no network co
 really great, neat and clean. I love it!
 
 
-### Package Structure
+
+# Package Structure
 
 * **UI** Contains UI related classes which are Activities, Fragments, ViewModels  and custom views.
 * **Database** Contains DAO, entity classes, Room DB implementation and everything else related to database
@@ -94,7 +96,8 @@ really great, neat and clean. I love it!
 * **Work** Contains a WorkManager worker to run daily and keep local db up to date
 
 
-### TO-DO List
+
+# TO-DO List
 
 * SSL Pinning (https://developer.android.com/training/articles/security-config#CertificatePinning)
 * Instant App support (https://developer.android.com/topic/google-play-instant/getting-started/instant-enabled-app-bundle)
