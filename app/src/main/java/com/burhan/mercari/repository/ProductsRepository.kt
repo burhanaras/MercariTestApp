@@ -15,11 +15,6 @@ import kotlinx.coroutines.withContext
  */
 class ProductsRepository(private val database: ProductsDatabase) {
 
-    // Since those url's are dynamic, we keep them in variables. They are retrieved from webservice.
-    private var allProductsServiceUrl: String? = null
-    private var menProductsServiceUrl: String? = null
-    private var womenProductsServiceUrl: String? = null
-
     val allProducts: LiveData<List<Product>> = Transformations.map(database.productDao.getAllProducts()) {
         it.asDomainModel()
     }
@@ -50,11 +45,16 @@ class ProductsRepository(private val database: ProductsDatabase) {
     suspend fun downloadAllProducts() {
         withContext(Dispatchers.IO) {
             try {
+
                 if (allProductsServiceUrl == null) {
                     downloadCategoryUrls()
                 }
-                val downloadedProducts = Network.apiService.getAllProductsAsync(allProductsServiceUrl!!).await()
-                database.productDao.insertAll(*downloadedProducts.asDatabaseModel())
+
+                allProductsServiceUrl?.let { url ->
+                    val downloadedProducts = Network.apiService.getAllProductsAsync(url).await()
+                    database.productDao.insertAll(*downloadedProducts.asDatabaseModel())
+                }
+
             } catch (e: Exception) {
                 e.printStackTrace()
             }
@@ -64,8 +64,16 @@ class ProductsRepository(private val database: ProductsDatabase) {
     suspend fun downloadProductsOfMen() {
         withContext(Dispatchers.IO) {
             try {
-                val downloadedProducts = Network.apiService.getMenProductsAsync("").await()
-                database.productDao.insertAll(*downloadedProducts.asDatabaseModel())
+
+                if (menProductsServiceUrl == null) {
+                    downloadCategoryUrls()
+                }
+
+                menProductsServiceUrl?.let { url ->
+                    val downloadedProducts = Network.apiService.getMenProductsAsync(url).await()
+                    database.productDao.insertAll(*downloadedProducts.asDatabaseModel())
+                }
+
             } catch (e: Exception) {
                 e.printStackTrace()
             }
@@ -75,8 +83,16 @@ class ProductsRepository(private val database: ProductsDatabase) {
     suspend fun downloadProductsOfWomen() {
         withContext(Dispatchers.IO) {
             try {
-                val downloadedProducts = Network.apiService.getWomenProductsAsync("").await()
-                database.productDao.insertAll(*downloadedProducts.asDatabaseModel())
+
+                if (womenProductsServiceUrl == null) {
+                    downloadCategoryUrls()
+                }
+
+                womenProductsServiceUrl?.let { url ->
+                    val downloadedProducts = Network.apiService.getWomenProductsAsync(url).await()
+                    database.productDao.insertAll(*downloadedProducts.asDatabaseModel())
+                }
+
             } catch (e: Exception) {
                 e.printStackTrace()
             }
@@ -87,5 +103,10 @@ class ProductsRepository(private val database: ProductsDatabase) {
         const val CATEGORY_ALL = "All"
         const val CATEGORY_MEN = "Men"
         const val CATEGORY_WOMEN = "Women"
+
+        // Since those url's are dynamic, we keep them in variables. They are retrieved from webservice.
+        private var allProductsServiceUrl: String? = null
+        private var menProductsServiceUrl: String? = null
+        private var womenProductsServiceUrl: String? = null
     }
 }
